@@ -12,7 +12,10 @@ WORKDIR ${PROJECT_DIR}
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-root
 
+COPY ./src ${SRC_DIR}/
+
 WORKDIR ${SRC_DIR}
 
 ENV PYTHONUNBUFFERED=1
 
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
