@@ -1,16 +1,15 @@
 FROM python:3.8
 
-RUN pip install poetry
+RUN pip install pipenv
 
 ENV PROJECT_DIR /usr/bin/src/webapp
 ENV SRC_DIR ${PROJECT_DIR}/src
 
-COPY pyproject.toml poetry.lock ${PROJECT_DIR}/
+COPY Pipfile Pipfile.lock ${PROJECT_DIR}/
 
 WORKDIR ${PROJECT_DIR}
 
-RUN poetry config virtualenvs.create false
-RUN poetry install --no-root
+RUN pipenv install --system --dev
 
 COPY ./src ${SRC_DIR}/
 
