@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+    app:
+        build:
+            context: .
+            target: dev
+        working_dir: /opt/project/src
+        ports:
+            - 8000:8000
+        environment:
+            - DJANGO_SECRET_KEY
+            - DATABASE_URL
+            - PYTHONPATH=/opt/project
+        volumes:
+            - .:/opt/project
+    postgres:
+        image: postgres:9.6
+        volumes:
+            - pg-data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB
+            - POSTGRES_USER
+            - POSTGRES_PASSWORD
+
+volumes:
+    pg-data:
+        driver: local
