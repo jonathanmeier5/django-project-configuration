@@ -12,6 +12,7 @@ django = "*"
 dj-database-url = "*"
 djangorestframework = "*"
 psycopg2-binary = "*"
+django-command-overrides = "*"
 
 [requires]
 python_version = "3.8"
